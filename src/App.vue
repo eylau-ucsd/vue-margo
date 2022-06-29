@@ -1,26 +1,24 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+import ListingCard from './components/ListingCard'
+import { reactive } from 'vue'
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const listings = reactive([
+    {
+        name: 'Your Lessons Now',
+        category: 'Vocal Training',
+        description: 'Your Lessons Now (formerly TruVoice Lessons) offers trans voice lessons for those seeking a feminine, masculine, or androgynous voice! '
+        + 'Your Lessons Now is a trans-owned business with mostly trans staff members.'
+    },
+    {
+        name: 'Brave Space LLC',
+        category: 'Counseling',
+        description: 'Information, referrals, and mental health services for transgender children, youth, adults, and their families.'
+    }
+])
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+    <div :key="listing.id" v-for="listing in listings">
+        <ListingCard data="listing" />
+    </div>
+</template>
