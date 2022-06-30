@@ -1,35 +1,35 @@
 <script setup>
-import ListingCard from './components/ListingCard'
-import { reactive } from 'vue'
+import ListingCard from '@/components/ListingCard'
+import { ref, computed } from 'vue'
+import { search } from '@/components/Search'
 
-const listings = reactive([
-    {
-        name: 'Your Lessons Now',
-        category: 'Vocal Training',
-        description: 'Your Lessons Now (formerly TruVoice Lessons) offers trans voice lessons for those seeking a feminine, masculine, or androgynous voice! '
-        + 'Your Lessons Now is a trans-owned business with mostly trans staff members.'
-    },
-    {
-        name: 'Brave Space LLC',
-        category: 'Counseling',
-        description: 'Information, referrals, and mental health services for transgender children, youth, adults, and their families.'
-    }
-])
+const searchQuery = ref("")
+
+const searchResults = computed(() => search(searchQuery.value))
 </script>
 
 <template>
-    <div :key="listing.id" v-for="listing in listings">
-        <ListingCard :data="listing" />
-    </div>
+    <input id="search-bar" v-model="searchQuery"> <!-- TODO: Refactor and extract this input element into its own component -->
+    <ListingCard :key="listing.id" v-for="listing in searchResults" :data="listing" />
 </template>
 
 <style>
 .listing-card {
   border-color: black;
   border-style: solid;
-  border-width: 5px;
+  border-width: 3px;
   padding: 5px;
   margin-top: 8px;
   margin-bottom: 8px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#search-bar {
+    display: block;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>
