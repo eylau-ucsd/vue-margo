@@ -1,16 +1,19 @@
 <script setup>
-import ListingCard from '@/components/ListingCard'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { search } from '@/components/Search'
+import ListingCard from '@/components/ListingCard'
+import SearchBar from '@/components/SearchBar.vue'
 
-const searchQuery = ref("")
+const searchResults = ref()
 
-const searchResults = computed(() => search(searchQuery.value))
+function displayResults(query) {
+  searchResults.value = search(query)
+}
 </script>
 
 <template>
-    <input id="search-bar" v-model="searchQuery"> <!-- TODO: Refactor and extract this input element into its own component -->
-    <ListingCard :key="listing.id" v-for="listing in searchResults" :data="listing" />
+  <SearchBar @submitQuery="displayResults"/> 
+  <ListingCard :key="listing.id" v-for="listing in searchResults" :data="listing" />
 </template>
 
 <style>
