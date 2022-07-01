@@ -5,10 +5,13 @@ const searchQuery = ref("")
 var singleTimeout = null
 
 watchEffect(() => {
-    // Vue is very annoying, watchers won't work directly with setTimeout
-    // have to resort to this anonymous lambda workaround
+    // Vue is very annoying, watchers won't work directly with setTimeout (something to do with scope)
+    // have to resort to this anonymous lambda workaround where I pass in searchQuery.value
+    // so Vue knows to watch the value searchQuery
     ((query) => {
         if (singleTimeout !== null) {
+            // if there's already a timer set (rebounce set in motion already)
+            // reset the timer
             clearTimeout(singleTimeout)
         }
         singleTimeout = setTimeout(() => {
