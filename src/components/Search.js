@@ -1,3 +1,6 @@
+// this file contains the business logic for making a query
+// the parameter is a query string, and the return value is a list of listings
+
 export function search(query) {
     const listings = [
         {

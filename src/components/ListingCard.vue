@@ -9,9 +9,8 @@ defineProps({
 </script>
 
 <template>
-    <div class="listing-card">
-        <h3>{{ data.name }}</h3>
+    <el-card :header="data.name" style="margin-top: 16px; margin-bottom: 16px; max-width: 500px; ">
         <p><b>Category:</b> {{ data.category }}</p>
         <p><i>{{ data.description }}</i></p>
-    </div>    
+    </el-card>    
 </template>

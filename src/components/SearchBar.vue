@@ -22,5 +22,5 @@ watchEffect(() => {
 </script>
 
 <template>
-    <input id="search-bar" v-model="searchQuery">
+    <el-input v-model="searchQuery" />
 </template>
