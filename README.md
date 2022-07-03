@@ -1,4 +1,4 @@
-# vue-transponder
+# vue-margo
 
 ## Project setup
 ```
